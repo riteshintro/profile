@@ -36,35 +36,6 @@ const projectsPage = () => {
       link: "https://mixcn-ui.vercel.app",
     },
     {
-      title: "Rupeespot- All deals Product in one place",
-      description:
-        "This is a free tool to check price history charts for millions of products for popular Indian stores such as Amazon and Flipkart. ",
-      tags: ["Nextjs", "Freelancing", "MySQL"],
-      link: "https://rupeespot.com/",
-    },
-    
-    {
-      title: "KryptoKapital- Investing in Cryptocurreny",
-      description:
-        "This is a platform for learning about cryptocurrency with many tools and festures. It is very big project. ",
-      tags: ["Nextjs", "Freelancing", "Supabase"],
-      link: "https://devkryptokapital.netlify.app/",
-    },
-    {
-      title: "ChatApp- Simple instagram clone",
-      description:
-        "ChatApp is similar to instagram, you can create, edit, delete, like,comment, post and  Follow, unfollow users",
-      tags: ["Reactjs", "Javascript"],
-      link: "https://github.com/taqui-786/chatapp-api",
-    },
-    {
-      title: "Devletter - A Newsletter for devs",
-      description:
-        "Devletter ia a newsletter subscribing single page app made with Nextjs and Tailwindcss.",
-      tags: ["Nextjs", "Tailwindcss"],
-      link: "https://github.com/taqui-786/Devletter",
-    },
-    {
       title: "CrouMaker - A Crousal Maker App",
       description:
         "Crousal Maker is a tool with in-built crousals templates edit and download it in any format.",

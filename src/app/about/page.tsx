@@ -6,8 +6,8 @@ import { Circle, Heart, User2 } from "lucide-react";
 const page = () => {
   const items = [
     { hobby: "coding" },
-    { hobby: "playing games" },
-    { hobby: "Watching Anima" },
+    { hobby: "Reading Tech News" },
+    { hobby: "Watching Movies" },
     { hobby: "Tech Blog writing" },
     { hobby: "creating Cool Projects" },
   ];
@@ -27,7 +27,7 @@ const page = () => {
    
         <FramerWrapper y={0} x={100} >
           <p className=" font-poppins text-xl w-full text-primary max-sm:text-lg">
-            I am a Full Stack Web Developer from Ramgarh cantt, Jharkhand,
+            I am a Full Stack Web Developer from Jaunpur, Utterpradesh,
             India. I love crafting cool web projects and also open-source
             contribuitions. My biggest achievement lies in my mastery of
             JavaScript and CSS, ensuring pixel-perfect designs that captivate
