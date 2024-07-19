@@ -49,11 +49,12 @@ const projectsPage = () => {
     <div className="h-full w-full relative flex flex-col items-start gap-5 overflow-hidden">
       <Badge className=" gap-2">
         <Layers className="h-5 w-5" />
-        Projects
+        Experience
       </Badge>
+      
       <div className="flex flex-col gap-3">
-        <Heading>My Projects</Heading>
-        <FramerWrapper y={0} x={200}>
+        <Heading>My Experience</Heading>
+        {/* <FramerWrapper y={0} x={200}>
           <p className=" font-poppins text-lg w-full text-primary max-sm:text-base">
             I love to Build Cool Projects. Here, you&#x27;ll find a curated
             collection of my creative endeavors and technical projects. Each
@@ -61,14 +62,39 @@ const projectsPage = () => {
             continuous learning. Feel free to explore this showcase of my
             passion and expertise in action.
           </p>
-        </FramerWrapper>
+        </FramerWrapper> */}
       </div>
-
-      <div className=" w-full flex flex-row flex-wrap gap-3 max-lg:flex-col">
-        {Projects.map((val, indx) => {
-          return <ProjectCards key={indx} value={val} num={indx} />;
-        })}
+      <div className="w-full h-fit flex flex-col">
+        <div className="w-full h-fit flex">
+          <FramerWrapper y={0} x={-100} delay={0.35} className="w-1/4 font-rubik flex items-center justify-evenly text-lg max-sm:text-base text-white">
+            June 2022 - Nov 2022
+          </FramerWrapper>
+          <FramerWrapper y={0} x={100} delay={0.35} className="relative w-3/4 border-l-4 border-l-[#3c3c3c] p-4 gap-3 education_point ">
+            <div className="text-2xl font-rubik max-sm:text-xl text-white">
+              Technobren Infotech Pvt Ltd, <span className="italic text-lg">Reactjs Trainee</span>
+            </div>
+            <p className=" font-poppins text-base w-full text-primary  max-sm:text-xs text-yellow-50">
+                I am currently Studying Bachelor of Technology form VBSP University Jaunpur a Goverment University of Jaunpur. 
+                The program has provided me with a well-rounded education, covering both theoretical foundations and practical applications of computer science.
+            </p>
+          </FramerWrapper>
+        </div>
+        
       </div>
+      <div className="w-full h-fit flex">
+          <FramerWrapper y={0} x={-100} delay={0.35} className="w-1/4 font-rubik flex items-center justify-evenly text-lg max-sm:text-base text-white">
+            Nov 2022 - Present
+          </FramerWrapper>
+          <FramerWrapper y={0} x={100} delay={0.35} className="relative w-3/4 border-l-4 border-l-[#3c3c3c] p-4 gap-3 education_point ">
+            <div className="text-2xl font-rubik max-sm:text-xl text-white">
+            Technobren Infotech Pvt Ltd, <span className="italic text-lg">Reactjs Developer</span>
+            </div>
+            <p className=" font-poppins text-base w-full text-primary  max-sm:text-xs text-yellow-50">
+                I am currently Studying Bachelor of Technology form VBSP University Jaunpur a Goverment University of Jaunpur. 
+                The program has provided me with a well-rounded education, covering both theoretical foundations and practical applications of computer science.
+            </p>
+          </FramerWrapper>
+        </div>
     </div>
   );
 };
