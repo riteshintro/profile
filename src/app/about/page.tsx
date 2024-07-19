@@ -26,7 +26,7 @@ const page = () => {
           </Heading>
    
         <FramerWrapper y={0} x={100} >
-          <p className=" font-poppins text-xl w-full text-primary max-sm:text-lg">
+          <p className=" font-poppins text-xl w-full text-primary max-sm:text-lg text-yellow-50">
             I am a Full Stack Web Developer from Jaunpur, Utterpradesh,
             India. I love crafting cool web projects and also open-source
             contribuitions. My biggest achievement lies in my mastery of
@@ -41,7 +41,7 @@ const page = () => {
         <Aboutfooter />
       </FramerWrapper>
       <FramerWrapper className="block" y={100} delay={0.31}>
-        <h1 className="gap-2 text-3xl font-poppins text-primary font-semibold flex icon_underline relative max-sm:text-2xl">
+        <h1 className="gap-2 text-3xl font-poppins text-primary font-semibold flex icon_underline relative max-sm:text-2xl text-white">
           {" "}
           <Heart className="h-8 w-8" /> Hobbies
         </h1>
@@ -50,7 +50,7 @@ const page = () => {
             return (
               <div
                 key={indx}
-                className="flex gap-2 justify-center items-center flex-row text-xl text-primary pt-3 max-lg:justify-start "
+                className="flex gap-2 justify-center items-center flex-row text-xl text-primary pt-3 max-lg:justify-start text-white"
               >
                 <Circle className="h-3 w-3" /> {val.hobby}
               </div>

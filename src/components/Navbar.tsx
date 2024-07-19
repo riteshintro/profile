@@ -27,7 +27,7 @@ const Navbar = () => {
     { name: "Home", icon: <Home /> , link: "/"},
     { name: "about", icon: <User2 />,link: "/about" },
     { name: "skills", icon: <Lightbulb />, link: "/skills" },
-    { name: "projects", icon: <Layers />, link: "/projects" },
+    { name: "experience", icon: <Layers />, link: "/experience" },
     { name: "work", icon: <Briefcase />, link: "/education" },
     { name: "more", icon: <PackagePlus />, link: "/more" },
     { name: "contact", icon: <Phone />, link: "/contact" },
@@ -54,7 +54,7 @@ const Navbar = () => {
 
 
   return (
-    <FramerWrapper className={`h-fit w-fit fixed top-5 right-0 left-0 px-5   m-auto border border-black rounded-full  p-2 bg-transparent   flex-row gap-3 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-100 max-sm:gap-1 ${scrolling ? "hidden":"flex"}`} y={-100}>
+    <FramerWrapper className={`h-fit w-fit fixed top-5 right-0 left-0 px-5   m-auto border border-white rounded-full  p-2 bg-transparent   flex-row gap-3 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-100 max-sm:gap-1 ${scrolling ? "hidden":"flex"}`} y={-100}>
       {items.map((itm) => {
         return (
           <TooltipProvider key={itm.name}>
