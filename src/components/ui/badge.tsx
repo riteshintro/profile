@@ -1,40 +1,43 @@
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
-
-import { cn } from "@/lib/utils"
-import FramerWrapper from "../FramerWrapper"
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 const badgeVariants = cva(
-  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  "inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-300",
   {
     variants: {
       variant: {
         default:
-          "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
-        secondary:
-          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        destructive:
-          "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
-        outline: "text-foreground",
+          "border-white/10 bg-white/5 text-white backdrop-blur-sm hover:bg-white/10",
+        gradient:
+          "border-transparent bg-gradient-to-r from-[#667eea] to-[#764ba2] text-white shadow-lg shadow-purple-500/20",
+        outline:
+          "border-white/20 bg-transparent text-gray-300 hover:bg-white/5",
+        glass:
+          "border-white/10 bg-white/5 backdrop-blur-md text-white",
       },
     },
     defaultVariants: {
       variant: "default",
     },
   }
-)
+);
 
 export interface BadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof badgeVariants> {}
+  VariantProps<typeof badgeVariants> { }
 
 function Badge({ className, variant, ...props }: BadgeProps) {
   return (
-    <FramerWrapper y={0} scale={0.5}>
-
-    <div className={cn(badgeVariants({ variant }), className)} {...props} />
-    </FramerWrapper>
-  )
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3 }}
+      className={cn(badgeVariants({ variant }), className)}
+      {...props}
+    />
+  );
 }
 
-export { Badge, badgeVariants }
+export { Badge, badgeVariants };

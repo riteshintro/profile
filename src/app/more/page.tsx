@@ -1,90 +1,98 @@
+"use client";
+import { motion } from "framer-motion";
 import Heading from "@/components/Heading";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, PackagePlus } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { PackagePlus, ExternalLink, Newspaper } from "lucide-react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
-import FramerWrapper from "@/components/FramerWrapper";
 
-const morePage = () => {
-  const morelink = [
+const MorePage = () => {
+  const platforms = [
     {
       title: "Dev.to",
-      description:
-        "I write blogs on web development, trending tech stacks or javascript guide or tips in Dev.to ",
+      description: "Technical articles on web development, JavaScript, and modern frameworks.",
       link: "https://dev.to",
+      color: "from-[#0a0a0a] to-[#1a1a2e]",
     },
     {
       title: "Hashnode",
-      description:
-        "I write blogs on web development, trending tech stacks or javascript guide or tips in Hashnode",
+      description: "In-depth tutorials and guides on trending tech stacks.",
       link: "https://hashnode.dev/",
+      color: "from-[#2962ff] to-[#0a0a0a]",
     },
     {
       title: "Medium",
-      description:
-        "I write blogs on web development, trending tech stacks or javascript guide or tips in Medium",
+      description: "Stories and insights about software engineering practices.",
       link: "https://medium.com/",
+      color: "from-[#0a0a0a] to-[#1a1a2e]",
     },
-
     {
       title: "Daily.Dev",
-      description:
-        "I am also the member of Daily Dev squads and i also upload post on some squads.",
+      description: "Active member sharing posts and engaging with the dev community.",
       link: "https://app.daily.dev/",
+      color: "from-[#ce3df3] to-[#0a0a0a]",
     },
   ];
 
   return (
-    // ABOUT PAGE
-    <div className="h-full w-full relative flex flex-col items-start gap-5 overflow-hidden">
-      <Badge className=" gap-2">
-        <PackagePlus className="h-5 w-5" />
+    <div className="h-full w-full relative flex flex-col items-start gap-8 overflow-hidden">
+      {/* Badge */}
+      <Badge className="gap-2">
+        <PackagePlus className="h-4 w-4" />
         More
       </Badge>
-      <div className="flex flex-col gap-3">
-        <Heading>More</Heading>
+
+      {/* Main Content */}
+      <div className="flex flex-col gap-4 max-w-xl">
+        <Heading>Writing & Community</Heading>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-lg text-gray-300 leading-relaxed"
+        >
+          I share my knowledge through technical articles on various platforms.
+        </motion.p>
       </div>
-      <div className="h-auto w-full flex flex-wrap gap-3 p-2">
-        {morelink.map((value, indx) => {
-          
-          return (
-            <FramerWrapper key={indx} className="max-w-[32%] max-lg:max-w-full" y={0} scale={0.8} delay={indx/4} duration={0.15}>
-            <Card  className="w-full">
-              <CardHeader>
-                <CardTitle>{value.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-base font-poppins">{value.description}</p>
-              </CardContent>
-              <CardFooter>
-                <Link
-                  href={value.link}
-                  target="blank"
-                  className={cn(
-                    buttonVariants({ variant: "default", size: "lg" }),
-                    "w-full gap-3"
-                  )}
-                >
-                  {" "}
-                  <ExternalLink />
-                  Visit here
-                </Link>
-              </CardFooter>
-            </Card>
-            </FramerWrapper>
-          );
-        })}
+
+      {/* Platform Cards */}
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
+        {platforms.map((platform, index) => (
+          <motion.div
+            key={platform.title}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+          >
+            <Link
+              href={platform.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block p-6 rounded-2xl glass hover-lift"
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-xl bg-gradient-to-br from-[#667eea]/20 to-[#764ba2]/20 border border-white/10">
+                    <Newspaper className="w-5 h-5 text-[#667eea]" />
+                  </div>
+                  <h3 className="text-xl font-heading font-semibold text-white group-hover:text-gradient transition-all">
+                    {platform.title}
+                  </h3>
+                </div>
+                <ExternalLink className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" />
+              </div>
+
+              {/* Description */}
+              <p className="text-gray-400 text-sm leading-relaxed">
+                {platform.description}
+              </p>
+            </Link>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default morePage;
+export default MorePage;

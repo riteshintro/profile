@@ -1,32 +1,33 @@
-import {Circle, Dna, Globe2, Languages} from "lucide-react"
+"use client";
+import { motion } from "framer-motion";
+
+interface AboutfooterProps { }
 
 const Aboutfooter = () => {
+  const stats = [
+    { value: "2+", label: "Years Experience" },
+    { value: "10+", label: "Projects Completed" },
+    { value: "5+", label: "Technologies" },
+  ];
 
+  return (
+    <div className="w-full flex flex-wrap gap-6 py-6">
+      {stats.map((stat, index) => (
+        <motion.div
+          key={stat.label}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+          className="flex-1 min-w-[140px] p-6 rounded-2xl glass text-center hover-lift"
+        >
+          <span className="block text-4xl font-heading font-bold text-gradient mb-2">
+            {stat.value}
+          </span>
+          <span className="text-sm text-gray-400">{stat.label}</span>
+        </motion.div>
+      ))}
+    </div>
+  );
+};
 
-    const items = [
-        {name:"Language", answer:"English UK", icon:<Languages className="h-11 w-11" />},
-        {name:"Nationality",answer:"India", icon:<Globe2   className="h-8 w-8" />},
-        {name:"Gender",answer:"Male", icon:<Dna  className="h-8 w-8" />},
-    ]
-
-
-    return(
-        <>
-        {
-            items.map((val, indx) => {
-              return(
-                <div className="p-1 w-fit relative" key={indx}>
-                <h1 className="gap-2 text-3xl font-poppins text-primary font-semibold relative flex icon_underline max-sm:text-2xl text-white">{val.icon}{val.name}</h1>
-                <div className="flex gap-2 justify-center items-center flex-row text-xl text-primary pt-3 max-lg:justify-start text-white">
-                <Circle className="h-3 w-3" /> {val.answer}
-                </div>
-            </div>
-              )
-            })
-          }
-         
-        </>
-    )
-}
-
-export default Aboutfooter
+export default Aboutfooter;

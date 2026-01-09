@@ -1,63 +1,100 @@
+"use client";
+import { motion } from "framer-motion";
 import Aboutfooter from "@/components/Aboutfooter";
-import FramerWrapper from "@/components/FramerWrapper";
 import Heading from "@/components/Heading";
 import { Badge } from "@/components/ui/badge";
-import { Circle, Heart, User2 } from "lucide-react";
+import { Heart, MapPin, Code2, User2 } from "lucide-react";
+
 const page = () => {
-  const items = [
-    { hobby: "coding" },
-    { hobby: "Reading Tech News" },
-    { hobby: "Watching Movies" },
-    { hobby: "Tech Blog writing" },
-    { hobby: "creating Cool Projects" },
+  const hobbies = [
+    "Coding",
+    "Reading Tech News",
+    "Watching Movies",
+    "Tech Blog Writing",
+    "Building Projects",
   ];
 
   return (
-    // ABOUT PAGE
-    <div className="h-full w-full relative flex flex-col items-start gap-5 overflow-hidden">
-      <Badge className=" gap-2">
-        <User2 className="h-5 w-5" />
-        About me
+    <div className="h-full w-full relative flex flex-col items-start gap-8 overflow-hidden">
+      {/* Badge */}
+      <Badge className="gap-2">
+        <User2 className="h-4 w-4" />
+        About Me
       </Badge>
-      <div className="flex flex-col gap-3">
-       
-          <Heading>
-            Software Engineer And Web <br /> Developer, Based In India.
-          </Heading>
-   
-        <FramerWrapper y={0} x={100} >
-          <p className=" font-poppins text-xl w-full text-primary max-sm:text-lg text-yellow-50">
-            I am a Full Stack Web Developer from Jaunpur, Utterpradesh,
-            India. I love crafting cool web projects and also open-source
-            contribuitions. My biggest achievement lies in my mastery of
-            JavaScript and CSS, ensuring pixel-perfect designs that captivate
-            users. With a keen eye for detail and a commitment to delivery
-            speed, I excel at creating seamless and responsive interfaces that
-            leave a lasting impression.
-          </p>
-        </FramerWrapper>
+
+      {/* Main Content */}
+      <div className="flex flex-col gap-6 max-w-3xl">
+        <Heading>
+          Software Engineer & Web Developer
+        </Heading>
+
+        {/* Location */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+          className="flex items-center gap-2 text-gray-400"
+        >
+          <MapPin className="w-4 h-4 text-[#667eea]" />
+          <span>Based in Jaunpur, India</span>
+        </motion.div>
+
+        {/* Bio */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="text-lg text-gray-300 leading-relaxed"
+        >
+          I am a Full Stack Web Developer passionate about crafting exceptional digital experiences.
+          I specialize in building modern web applications using React, Next.js, and TypeScript.
+          With a keen eye for detail and commitment to clean code, I create seamless,
+          responsive interfaces that leave lasting impressions.
+        </motion.p>
+
+        {/* What I Do */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="flex items-center gap-3 p-4 rounded-xl glass"
+        >
+          <Code2 className="w-6 h-6 text-[#00d4ff]" />
+          <span className="text-gray-300">
+            Currently working as a <span className="text-white font-medium">React.js Developer</span>
+          </span>
+        </motion.div>
       </div>
-      <FramerWrapper className="w-full flex flex-row justify-between max-lg:flex-col " y={100} delay={0.30}>
-        <Aboutfooter />
-      </FramerWrapper>
-      <FramerWrapper className="block" y={100} delay={0.31}>
-        <h1 className="gap-2 text-3xl font-poppins text-primary font-semibold flex icon_underline relative max-sm:text-2xl text-white">
-          {" "}
-          <Heart className="h-8 w-8" /> Hobbies
-        </h1>
-        <div className="w-full h-fit p-2 flex flex-row justify-between gap-7 max-lg:flex-col">
-          {items.map((val, indx) => {
-            return (
-              <div
-                key={indx}
-                className="flex gap-2 justify-center items-center flex-row text-xl text-primary pt-3 max-lg:justify-start text-white"
-              >
-                <Circle className="h-3 w-3" /> {val.hobby}
-              </div>
-            );
-          })}
+
+      {/* Stats */}
+      <Aboutfooter />
+
+      {/* Hobbies Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+        className="w-full"
+      >
+        <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold text-white mb-4">
+          <Heart className="w-6 h-6 text-pink-500" />
+          Hobbies & Interests
+        </h2>
+
+        <div className="flex flex-wrap gap-3">
+          {hobbies.map((hobby, index) => (
+            <motion.span
+              key={hobby}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: 0.7 + index * 0.05 }}
+              className="px-4 py-2 rounded-full glass text-gray-300 text-sm hover:text-white hover:border-[#667eea]/50 transition-all cursor-default"
+            >
+              {hobby}
+            </motion.span>
+          ))}
         </div>
-      </FramerWrapper>
+      </motion.div>
     </div>
   );
 };

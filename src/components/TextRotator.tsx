@@ -1,30 +1,41 @@
-import React from 'react'
+"use client";
+import { motion } from "framer-motion";
 
-function TextRotator() {
+const roles = [
+  "Full Stack Developer",
+  "React.js Expert",
+  "Next.js Developer",
+  "UI/UX Enthusiast",
+  "Open Source Contributor",
+];
+
+const TextRotator = () => {
   return (
-   
-    <div
-    className="py-4  rounded-md flex flex-col justify-center items-center overflow-hidden"
-  >
-    <div className="font-poppins text-base sm:text-2xl [text-wrap:balance] text-yellow-50">
-    I am a Software Developer &
-      <span
-        className="inline-flex ml-2 flex-col h-[calc(theme(fontSize.lg)*theme(lineHeight.tight))] sm:h-[calc(theme(fontSize.3xl)*theme(lineHeight.tight))] overflow-hidden"
-      >
-        <ul
-          className="block text-left font-rubik text-lg sm:text-3xl leading-tight [&_li]:block animate-text-slide"
+    <div className="flex items-center gap-3 text-xl md:text-2xl font-medium">
+      <span className="text-gray-400">I&apos;m a</span>
+      <div className="relative h-9 overflow-hidden">
+        <motion.div
+          animate={{ y: [0, -36, -72, -108, -144, 0] }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+          }}
+          className="flex flex-col"
         >
-          <li className="text-[#2f7df4]">Developer</li>
-          <li className="text-[#2f7df4]">Blogger</li>
-          <li className="text-[#2f7df4]">Gamer</li>
-          <li className="text-[#2f7df4]">Creator</li>
-          <li className="text-[#2f7df4]">Student</li>
-          <li className="text-[#2f7df4]">Contributer</li>
-        </ul>
-      </span>
+          {roles.map((role, index) => (
+            <span
+              key={index}
+              className="h-9 flex items-center text-gradient-cyan font-semibold"
+            >
+              {role}
+            </span>
+          ))}
+        </motion.div>
+      </div>
     </div>
-  </div>
-  )
-}
+  );
+};
 
-export default TextRotator
+export default TextRotator;

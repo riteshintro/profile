@@ -1,64 +1,47 @@
 import type { Metadata } from "next";
-import {  Poppins, Rubik } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import { siteConfig } from "./page";
-const poppins = Poppins({
+
+const inter = Inter({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-poppins",
+  weight: ["400", "500", "600"],
+  variable: "--font-inter",
 });
-const rubik = Rubik({
+
+const outfit = Outfit({
   subsets: ["latin"],
-  weight: "600",
-  variable: "--font-rubik",
+  weight: ["600", "700", "800"],
+  variable: "--font-outfit",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mdTaquiImam.vercel.app"),
+  metadataBase: new URL("https://riteshmaurya.vercel.app"),
   title: {
     default: siteConfig.name,
     template: `%s - Software Engineer`,
   },
   description: siteConfig.description,
-
-  // added new keywords for seo
   keywords: [
-    "md",
-    "taqui",
-    "imam",
-    "Md",
-    "MD",
-    "TAQUI",
-    "Taqui",
-    "Imam",
-    "Imam",
     "Ritesh Kumar Maurya",
     "ritesh kumar maurya",
-    "riteshui",
-    "riteshkumar",
+    "riteshintro",
     "portfolio",
     "web developer",
-    "web",
-    "web dev",
-    "developer",
-    "PROGRAMMER ",
-    "programmer ",
-    "MD TAQUI IMAM ",
-    "website",
-    "@Taquiimam",
-    "Taquiimam",
-    "taqui developer",
+    "software engineer",
+    "react developer",
+    "nextjs developer",
+    "full stack developer",
   ],
   authors: [
     {
-      name: "Taqui Imam",
-      url: "https://github.com/taqui-786",
+      name: "Ritesh Maurya",
+      url: "https://github.com/riteshintro",
     },
   ],
-  creator: "Taqui imam",
-
+  creator: "Ritesh Maurya",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -73,7 +56,7 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [`${siteConfig.url}/og-image.png`],
-    creator: "@Taquiimam14",
+    creator: "@riteshintro",
   },
   icons: {
     icon: "/favicon.ico",
@@ -86,16 +69,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${poppins.variable} ${rubik.variable}`}>
+    <html lang="en" className="dark">
+      <body className={`${inter.variable} ${outfit.variable} font-sans`}>
+        {/* Animated Gradient Mesh Background */}
+        <div className="gradient-mesh" aria-hidden="true" />
+        
+        {/* Grain Texture Overlay */}
+        <div className="grain" aria-hidden="true" />
+        
         <main
           className={cn(
-            "flex relative screen break-words min-h-screen items-center justify-between pt-14 pb-4 px-40 max-md:p-4 bg-transparent max-sm:pt-20 bg-[radial-gradient(#000000_1px,transparent_1px)] [background-size:16px_16px]",
-            // { "bg-black": "#E6E7EB" }
+            "relative min-h-screen flex items-center justify-between",
+            "pt-24 pb-8 px-8 md:px-16 lg:px-32 xl:px-40",
+            "max-sm:pt-28 max-sm:px-4"
           )}
-          style={{backgroundColor:"#222831"}}
         >
-          {/* NAVBAR ->  */}
           <Navbar />
           {children}
         </main>

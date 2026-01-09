@@ -1,38 +1,80 @@
-import FramerWrapper from "@/components/FramerWrapper";
+"use client";
+import { motion } from "framer-motion";
 import Heading from "@/components/Heading";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase } from "lucide-react";
+import { Briefcase, GraduationCap, Calendar, MapPin } from "lucide-react";
 
-const educationPage = () => {
+const EducationPage = () => {
+  const education = [
+    {
+      period: "July 2018 - 2022",
+      degree: "Bachelor of Technology",
+      institution: "VBSP Purvanchal University, Jaunpur",
+      description:
+        "Completed B.Tech with a focus on Computer Science fundamentals. The program provided a well-rounded education covering theoretical foundations and practical applications of software development.",
+      location: "Jaunpur, UP",
+    },
+  ];
+
   return (
-    // ABOUT PAGE
-    <div className="h-full w-full relative flex flex-col items-start gap-5 overflow-hidden">
-      <Badge className=" gap-2">
-        <Briefcase className="h-5 w-5" />
+    <div className="h-full w-full relative flex flex-col items-start gap-8 overflow-hidden">
+      {/* Badge */}
+      <Badge className="gap-2">
+        <Briefcase className="h-4 w-4" />
         Education
       </Badge>
-      <div className="flex flex-col gap-3">
-        <Heading>My Education</Heading>
+
+      {/* Main Content */}
+      <div className="flex flex-col gap-4">
+        <Heading>Educational Background</Heading>
       </div>
-      <div className="w-full h-fit flex flex-col">
-        <div className="w-full h-fit flex">
-          <FramerWrapper y={0} x={-100} delay={0.35} className="w-1/4 font-rubik flex items-center justify-evenly text-lg max-sm:text-base text-white">
-            July 2018 - 2022
-          </FramerWrapper>
-          <FramerWrapper y={0} x={100} delay={0.35} className="relative w-3/4 border-l-4 border-l-[#3c3c3c] p-4 gap-3 education_point ">
-            <div className="text-2xl font-rubik max-sm:text-xl text-white">
-              Bachelor of Technology, <br /> VBPS Purvanchal University
-              Jaunpur
+
+      {/* Education Cards */}
+      <div className="w-full max-w-3xl space-y-6">
+        {education.map((edu, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 + index * 0.15 }}
+            className="p-6 rounded-2xl glass border-gradient hover-lift"
+          >
+            {/* Header */}
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-xl bg-gradient-to-br from-[#667eea]/20 to-[#764ba2]/20 border border-white/10">
+                  <GraduationCap className="w-6 h-6 text-[#667eea]" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-heading font-semibold text-white">
+                    {edu.degree}
+                  </h3>
+                  <p className="text-gray-400">{edu.institution}</p>
+                </div>
+              </div>
             </div>
-            <p className=" font-poppins text-base w-full text-primary  max-sm:text-xs text-yellow-50">
-                I am currently Studying Bachelor of Technology form VBSP University Jaunpur a Goverment University of Jaunpur. 
-                The program has provided me with a well-rounded education, covering both theoretical foundations and practical applications of computer science.
+
+            {/* Meta Info */}
+            <div className="flex flex-wrap gap-4 mb-4">
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <Calendar className="w-4 h-4 text-[#00d4ff]" />
+                {edu.period}
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <MapPin className="w-4 h-4 text-[#ec4899]" />
+                {edu.location}
+              </div>
+            </div>
+
+            {/* Description */}
+            <p className="text-gray-300 text-sm leading-relaxed">
+              {edu.description}
             </p>
-          </FramerWrapper>
-        </div>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default educationPage;
+export default EducationPage;

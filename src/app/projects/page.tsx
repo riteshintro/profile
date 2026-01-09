@@ -1,76 +1,80 @@
-import FramerWrapper from "@/components/FramerWrapper";
+"use client";
+import { motion } from "framer-motion";
 import Heading from "@/components/Heading";
 import ProjectCards from "@/components/ProjectsCard";
 import { Badge } from "@/components/ui/badge";
 import { Layers } from "lucide-react";
 
-const projectsPage = () => {
-  // PROJECTS DATA
+const ProjectsPage = () => {
   const Projects = [
     {
-      title: "FriendZ - A social media Platform",
+      title: "FriendZ - Social Media Platform",
       description:
-        "FriendZ is a social media app made with modern tech stacks such as redis, Authjs etc. A user can Create, delete, like, comment Post. ",
-      tags: ["Redis", "Authjs", "Typescript", "Nextjs"],
-      link: "https://github.com/taqui-786/project-friendz",
+        "A modern social media app built with cutting-edge technologies. Features include real-time posts, likes, comments, and user interactions with Redis caching.",
+      tags: ["Redis", "Auth.js", "TypeScript", "Next.js"],
+      link: "#",
     },
     {
-      title: "itZmyLink- One Page many Links",
+      title: "itZmyLink - Link in Bio",
       description:
-        "itZmyLink is a simple platform where user can create a personalized page to showcase all your social media profiles in one place. ",
-      tags: ["Nextjs", "Typescript", "Shadcn Ui"],
-      link: "https://github.com/taqui-786/itZmyLink",
+        "A personalized platform to showcase all your social media profiles in one beautiful page. Simple, elegant, and effective.",
+      tags: ["Next.js", "TypeScript", "Shadcn UI"],
+      link: "#",
     },
     {
-      title: "GitEstimate- Github estimate worth generator",
+      title: "GitEstimate - GitHub Worth Generator",
       description:
-        "GitEstimate is a simple fun tool where user can generate their github estimate worth card just by entering their github username. ",
-      tags: ["Nextjs", "Typescript", "Shadcn Ui"],
-      link: "https://github.com/taqui-786/GitEstimate",
+        "A fun tool to generate your GitHub profile estimate worth card by simply entering your username. Analyze your contributions!",
+      tags: ["Next.js", "TypeScript", "Shadcn UI"],
+      link: "#",
     },
     {
-      title: "Mixcn-ui- Reusable components for Nextjs",
+      title: "Mixcn-ui - Component Library",
       description:
-        "This is Nextjs app with a Collection of Nextjs Components - (Currently under Devlelopment) ",
-      tags: ["Nextjs", "Shadcnui", "Npx","Library"],
-      link: "https://mixcn-ui.vercel.app",
+        "A collection of reusable Next.js components with modern design. Built with accessibility and developer experience in mind.",
+      tags: ["Next.js", "Shadcn UI", "NPX", "Library"],
+      link: "#",
     },
     {
-      title: "CrouMaker - A Crousal Maker App",
+      title: "CrouMaker - Carousel Maker",
       description:
-        "Crousal Maker is a tool with in-built crousals templates edit and download it in any format.",
-      tags: ["Nextjs", "jsPDF", "html2canvas", "Shadcn Ui"],
-      link: "https://github.com/taqui-786/crousal-maker",
+        "Create stunning carousels with built-in templates. Edit and download in any format including PDF and images.",
+      tags: ["Next.js", "jsPDF", "html2canvas", "Shadcn UI"],
+      link: "#",
     },
   ];
 
   return (
-    // PROJECT PAGE
-    <div className="h-full w-full relative flex flex-col items-start gap-5 overflow-hidden">
-      <Badge className=" gap-2">
-        <Layers className="h-5 w-5" />
+    <div className="h-full w-full relative flex flex-col items-start gap-8 overflow-hidden">
+      {/* Badge */}
+      <Badge className="gap-2">
+        <Layers className="h-4 w-4" />
         Projects
       </Badge>
-      <div className="flex flex-col gap-3">
-        <Heading>My Projects</Heading>
-        <FramerWrapper y={0} x={200}>
-          <p className=" font-poppins text-lg w-full text-primary max-sm:text-base">
-            I love to Build Cool Projects. Here, you&#x27;ll find a curated
-            collection of my creative endeavors and technical projects. Each
-            piece represents a journey of innovation, problem-solving, and
-            continuous learning. Feel free to explore this showcase of my
-            passion and expertise in action.
-          </p>
-        </FramerWrapper>
+
+      {/* Main Content */}
+      <div className="flex flex-col gap-4 max-w-3xl">
+        <Heading>Featured Projects</Heading>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-lg text-gray-300 leading-relaxed"
+        >
+          A curated collection of my creative endeavors and technical projects.
+          Each piece represents innovation, problem-solving, and continuous learning.
+        </motion.p>
       </div>
 
-      <div className=" w-full flex flex-row flex-wrap gap-3 max-lg:flex-col">
-        {Projects.map((val, indx) => {
-          return <ProjectCards key={indx} value={val} num={indx} />;
-        })}
+      {/* Projects Grid */}
+      <div className="w-full flex flex-wrap gap-4">
+        {Projects.map((project, index) => (
+          <ProjectCards key={index} value={project} num={index} />
+        ))}
       </div>
     </div>
   );
 };
 
-export default projectsPage;
+export default ProjectsPage;

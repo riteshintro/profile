@@ -1,81 +1,114 @@
-"use client"
+"use client";
 import { cn } from "@/lib/utils";
 import {
   Briefcase,
+  FolderKanban,
   Home,
   Layers,
   Lightbulb,
-  PackagePlus,
   Phone,
   User2,
 } from "lucide-react";
-import { buttonVariants } from "./ui/button";
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import FramerWrapper from "./FramerWrapper";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const items = [
-    { name: "Home", icon: <Home /> , link: "/"},
-    { name: "about", icon: <User2 />,link: "/about" },
-    { name: "skills", icon: <Lightbulb />, link: "/skills" },
-    { name: "experience", icon: <Layers />, link: "/experience" },
-    { name: "work", icon: <Briefcase />, link: "/education" },
-    { name: "more", icon: <PackagePlus />, link: "/more" },
-    { name: "contact", icon: <Phone />, link: "/contact" },
+    { name: "Home", icon: <Home className="w-5 h-5" />, link: "/" },
+    { name: "About", icon: <User2 className="w-5 h-5" />, link: "/about" },
+    { name: "Skills", icon: <Lightbulb className="w-5 h-5" />, link: "/skills" },
+    { name: "Projects", icon: <FolderKanban className="w-5 h-5" />, link: "/projects" },
+    { name: "Experience", icon: <Layers className="w-5 h-5" />, link: "/experience" },
+    { name: "Education", icon: <Briefcase className="w-5 h-5" />, link: "/education" },
+    { name: "Contact", icon: <Phone className="w-5 h-5" />, link: "/contact" },
   ];
 
   const [scrolling, setScrolling] = useState(false);
-  const pathname = usePathname()
-  
+  const pathname = usePathname();
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setScrolling(true);
-      } else {
-        setScrolling(false);
-      }
+      setScrolling(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
   return (
-    <FramerWrapper className={`h-fit w-fit fixed top-5 right-0 left-0 px-5   m-auto border border-white rounded-full  p-2 bg-transparent   flex-row gap-3 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-100 max-sm:gap-1 ${scrolling ? "hidden":"flex"}`} y={-100}>
-      {items.map((itm) => {
+    <motion.nav
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className={cn(
+        "fixed top-4 left-1/2 -translate-x-1/2 z-50",
+        "px-2 py-2 rounded-full",
+        "glass-strong",
+        "flex items-center gap-1",
+        "transition-all duration-300",
+        scrolling && "top-2 scale-95"
+      )}
+    >
+      {items.map((item) => {
+        const isActive = pathname === item.link;
+
         return (
-          <TooltipProvider key={itm.name}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link href={itm.link} 
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "sm" }),"hover:text-[#2f7df4]",pathname === itm.link && "text-[#2f7df4] bg-zinc-100"
-                  )}
-                >
-                  {itm.icon}
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p >{itm.name}</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <Link
+            key={item.name}
+            href={item.link}
+            className={cn(
+              "relative px-4 py-2.5 rounded-full",
+              "flex items-center justify-center",
+              "transition-all duration-300 ease-out",
+              "hover:scale-105",
+              "group"
+            )}
+          >
+            {/* Active Background */}
+            {isActive && (
+              <motion.div
+                layoutId="navbar-active"
+                className="absolute inset-0 rounded-full bg-gradient-to-r from-[#667eea] to-[#764ba2]"
+                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+              />
+            )}
+
+            {/* Icon */}
+            <span
+              className={cn(
+                "relative z-10 transition-colors duration-300",
+                isActive
+                  ? "text-white"
+                  : "text-gray-400 group-hover:text-white"
+              )}
+            >
+              {item.icon}
+            </span>
+
+            {/* Tooltip */}
+            <span
+              className={cn(
+                "absolute -bottom-10 left-1/2 -translate-x-1/2",
+                "px-3 py-1.5 rounded-lg",
+                "bg-gray-900/90 backdrop-blur-sm",
+                "text-xs font-medium text-white whitespace-nowrap",
+                "opacity-0 translate-y-2 pointer-events-none",
+                "group-hover:opacity-100 group-hover:translate-y-0",
+                "transition-all duration-200",
+                "border border-white/10"
+              )}
+            >
+              {item.name}
+              {/* Tooltip Arrow */}
+              <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900/90 rotate-45 border-l border-t border-white/10" />
+            </span>
+          </Link>
         );
       })}
-      </FramerWrapper>
+    </motion.nav>
   );
 };
 

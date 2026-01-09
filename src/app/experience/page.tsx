@@ -1,102 +1,101 @@
-import FramerWrapper from "@/components/FramerWrapper";
+"use client";
+import { motion } from "framer-motion";
 import Heading from "@/components/Heading";
-import ProjectCards from "@/components/ProjectsCard";
 import { Badge } from "@/components/ui/badge";
-import { Layers } from "lucide-react";
+import { Layers, Building2, Calendar } from "lucide-react";
 
-const projectsPage = () => {
-  // PROJECTS DATA
-  const Projects = [
+const ExperiencePage = () => {
+  const experiences = [
     {
-      title: "FriendZ - A social media Platform",
+      period: "Nov 2022 - Present",
+      role: "React.js Developer",
+      company: "Technobren Infotech Pvt Ltd",
       description:
-        "FriendZ is a social media app made with modern tech stacks such as redis, Authjs etc. A user can Create, delete, like, comment Post. ",
-      tags: ["Redis", "Authjs", "Typescript", "Nextjs"],
-      link: "https://github.com/taqui-786/project-friendz",
+        "Working on enterprise-level React applications, implementing new features, optimizing performance, and collaborating with cross-functional teams to deliver high-quality software solutions.",
+      current: true,
     },
     {
-      title: "itZmyLink- One Page many Links",
+      period: "June 2022 - Nov 2022",
+      role: "React.js Trainee",
+      company: "Technobren Infotech Pvt Ltd",
       description:
-        "itZmyLink is a simple platform where user can create a personalized page to showcase all your social media profiles in one place. ",
-      tags: ["Nextjs", "Typescript", "Shadcn Ui"],
-      link: "https://github.com/taqui-786/itZmyLink",
-    },
-    {
-      title: "GitEstimate- Github estimate worth generator",
-      description:
-        "GitEstimate is a simple fun tool where user can generate their github estimate worth card just by entering their github username. ",
-      tags: ["Nextjs", "Typescript", "Shadcn Ui"],
-      link: "https://github.com/taqui-786/GitEstimate",
-    },
-    {
-      title: "Mixcn-ui- Reusable components for Nextjs",
-      description:
-        "This is Nextjs app with a Collection of Nextjs Components - (Currently under Devlelopment) ",
-      tags: ["Nextjs", "Shadcnui", "Npx","Library"],
-      link: "https://mixcn-ui.vercel.app",
-    },
-    {
-      title: "CrouMaker - A Crousal Maker App",
-      description:
-        "Crousal Maker is a tool with in-built crousals templates edit and download it in any format.",
-      tags: ["Nextjs", "jsPDF", "html2canvas", "Shadcn Ui"],
-      link: "https://github.com/taqui-786/crousal-maker",
+        "Learned and applied React.js fundamentals, building components, managing state, and contributing to real-world projects under senior developer mentorship.",
+      current: false,
     },
   ];
 
   return (
-    // PROJECT PAGE
-    <div className="h-full w-full relative flex flex-col items-start gap-5 overflow-hidden">
-      <Badge className=" gap-2">
-        <Layers className="h-5 w-5" />
+    <div className="h-full w-full relative flex flex-col items-start gap-8 overflow-hidden">
+      {/* Badge */}
+      <Badge className="gap-2">
+        <Layers className="h-4 w-4" />
         Experience
       </Badge>
-      
-      <div className="flex flex-col gap-3">
-        <Heading>My Experience</Heading>
-        {/* <FramerWrapper y={0} x={200}>
-          <p className=" font-poppins text-lg w-full text-primary max-sm:text-base">
-            I love to Build Cool Projects. Here, you&#x27;ll find a curated
-            collection of my creative endeavors and technical projects. Each
-            piece represents a journey of innovation, problem-solving, and
-            continuous learning. Feel free to explore this showcase of my
-            passion and expertise in action.
-          </p>
-        </FramerWrapper> */}
+
+      {/* Main Content */}
+      <div className="flex flex-col gap-4">
+        <Heading>Work Experience</Heading>
       </div>
-      <div className="w-full h-fit flex flex-col">
-        <div className="w-full h-fit flex">
-          <FramerWrapper y={0} x={-100} delay={0.35} className="w-1/4 font-rubik flex items-center justify-evenly text-lg max-sm:text-base text-white">
-            June 2022 - Nov 2022
-          </FramerWrapper>
-          <FramerWrapper y={0} x={100} delay={0.35} className="relative w-3/4 border-l-4 border-l-[#3c3c3c] p-4 gap-3 education_point ">
-            <div className="text-2xl font-rubik max-sm:text-xl text-white">
-              Technobren Infotech Pvt Ltd, <span className="italic text-lg">Reactjs Trainee</span>
+
+      {/* Timeline */}
+      <div className="w-full max-w-3xl space-y-8">
+        {experiences.map((exp, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 + index * 0.15 }}
+            className="relative flex gap-6"
+          >
+            {/* Timeline Line */}
+            <div className="flex flex-col items-center">
+              <div
+                className={`w-4 h-4 rounded-full border-2 ${exp.current
+                    ? "bg-gradient-to-r from-[#667eea] to-[#764ba2] border-[#667eea] shadow-lg shadow-purple-500/30"
+                    : "bg-gray-700 border-gray-600"
+                  }`}
+              />
+              {index < experiences.length - 1 && (
+                <div className="w-0.5 h-full bg-gradient-to-b from-gray-600/50 to-transparent mt-2" />
+              )}
             </div>
-            <p className=" font-poppins text-base w-full text-primary  max-sm:text-xs text-yellow-50">
-                I am currently Studying Bachelor of Technology form VBSP University Jaunpur a Goverment University of Jaunpur. 
-                The program has provided me with a well-rounded education, covering both theoretical foundations and practical applications of computer science.
-            </p>
-          </FramerWrapper>
-        </div>
-        
+
+            {/* Content Card */}
+            <div className="flex-1 pb-8">
+              <div className="p-6 rounded-2xl glass hover-lift">
+                {/* Period Badge */}
+                <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
+                  <Calendar className="w-4 h-4" />
+                  {exp.period}
+                  {exp.current && (
+                    <span className="px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 text-xs font-medium">
+                      Current
+                    </span>
+                  )}
+                </div>
+
+                {/* Role */}
+                <h3 className="text-xl font-heading font-semibold text-white mb-1">
+                  {exp.role}
+                </h3>
+
+                {/* Company */}
+                <div className="flex items-center gap-2 text-gray-400 mb-4">
+                  <Building2 className="w-4 h-4 text-[#667eea]" />
+                  {exp.company}
+                </div>
+
+                {/* Description */}
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  {exp.description}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
-      <div className="w-full h-fit flex">
-          <FramerWrapper y={0} x={-100} delay={0.35} className="w-1/4 font-rubik flex items-center justify-evenly text-lg max-sm:text-base text-white">
-            Nov 2022 - Present
-          </FramerWrapper>
-          <FramerWrapper y={0} x={100} delay={0.35} className="relative w-3/4 border-l-4 border-l-[#3c3c3c] p-4 gap-3 education_point ">
-            <div className="text-2xl font-rubik max-sm:text-xl text-white">
-            Technobren Infotech Pvt Ltd, <span className="italic text-lg">Reactjs Developer</span>
-            </div>
-            <p className=" font-poppins text-base w-full text-primary  max-sm:text-xs text-yellow-50">
-                I am currently Studying Bachelor of Technology form VBSP University Jaunpur a Goverment University of Jaunpur. 
-                The program has provided me with a well-rounded education, covering both theoretical foundations and practical applications of computer science.
-            </p>
-          </FramerWrapper>
-        </div>
     </div>
   );
 };
 
-export default projectsPage;
+export default ExperiencePage;
