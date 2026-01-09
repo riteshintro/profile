@@ -9,11 +9,14 @@ import css from "../../../public/css.png";
 import js from "../../../public/js.png";
 import ts from "../../../public/ts.png";
 import react from "../../../public/react.png";
-import nextjs from "../../../public/nextjs.jpeg";
-import java from "../../../public/java.png";
+import nextjs from "../../../public/next_js.webp";
+import python from "../../../public/python.webp";
 import nestjs from "../../../public/nestjs.png";
-import pg from "../../../public/pg.jpeg";
+import pg from "../../../public/pg.png";
 import github from "../../../public/github.png";
+import electron from "../../../public/electron.png";
+import reactnative from "../../../public/reactnative.svg";
+import extenstion from "../../../public/extenstion.png";
 
 const SkillsPage = () => {
   const languages = [
@@ -21,7 +24,7 @@ const SkillsPage = () => {
     { alt: "css", img: css },
     { alt: "javascript", img: js },
     { alt: "typescript", img: ts },
-    { alt: "java", img: java },
+    { alt: "python", img: python },
   ];
 
   const frameworks = [
@@ -30,6 +33,9 @@ const SkillsPage = () => {
     { alt: "nestjs", img: nestjs },
     { alt: "postgresql", img: pg },
     { alt: "github", img: github },
+    { alt: "electron", img: electron },
+    { alt: "react native", img: reactnative },
+    { alt: "chrome extension", img: extenstion },
   ];
 
   return (

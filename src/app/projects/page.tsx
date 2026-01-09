@@ -35,13 +35,6 @@ const ProjectsPage = () => {
       tags: ["Next.js", "Shadcn UI", "NPX", "Library"],
       link: "#",
     },
-    {
-      title: "CrouMaker - Carousel Maker",
-      description:
-        "Create stunning carousels with built-in templates. Edit and download in any format including PDF and images.",
-      tags: ["Next.js", "jsPDF", "html2canvas", "Shadcn UI"],
-      link: "#",
-    },
   ];
 
   return (
